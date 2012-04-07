@@ -38,6 +38,11 @@ public class MockHttpServletRequest implements HttpServletRequest {
     }
 
     @Override
+    public Map getParameterMap() {
+        return parameters;
+    }
+
+    @Override
     public String getAuthType() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
@@ -200,11 +205,6 @@ public class MockHttpServletRequest implements HttpServletRequest {
     @Override
     public String[] getParameterValues(String name) {
         return new String[0];  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public Map getParameterMap() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
