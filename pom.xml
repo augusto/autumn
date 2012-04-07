@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>autumn</groupId>
+    <artifactId>autumn</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>web</module>
+        <module>model</module>
+        <module>inject</module>
+        <module>plugins</module>
+        <module>functional_specs</module>
+    </modules>
+
+    <description>
+        A wiki-like application that allows a user to edit and link pages.
+        The application uses a datastore (files or db?) and should only allow registered users to
+        edit the pages and/or access the site.
+
+        The main objective of this, is to learn some different approaches about how to build a web application without
+        using and IoC container and/or *very* lightweight frameworks.
+    </description>
+
+    <properties>
+        <java.version>1.6</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>6.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>1.3.RC2</version>
+            </dependency>
+            <dependency>
+                <groupId>freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>2.3.9</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ckeditor</groupId>
+                <artifactId>ckeditor-java-core</artifactId>
+                <version>3.5.3</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>2.5</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>maven-jetty-plugin</artifactId>
+                    <version>6.1.26</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <compilerVersion>${java.version}</compilerVersion>
+                </configuration>
+
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>
