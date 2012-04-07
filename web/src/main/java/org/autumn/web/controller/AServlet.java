@@ -4,6 +4,7 @@ import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.autumn.web.Renderer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +49,7 @@ public class AServlet extends HttpServlet {
     private Configuration config() {
         if( cfg == null) {
             cfg = new Configuration();
-            cfg.setServletContextForTemplateLoading(getServletContext(), TEMPLATES_DIRECTORY);
+            cfg.setClassForTemplateLoading(Renderer.class,"");
             cfg.setObjectWrapper(new DefaultObjectWrapper());
         }
 

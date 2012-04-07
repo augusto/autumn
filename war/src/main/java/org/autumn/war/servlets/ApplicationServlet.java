@@ -1,9 +1,11 @@
-package org.autumn.web.http;
+package org.autumn.war.servlets;
 
 import org.autumn.web.Renderer;
 import org.autumn.web.Request;
 import org.autumn.web.Response;
 import org.autumn.web.Router;
+import org.autumn.web.http.HttpRequest;
+import org.autumn.web.http.HttpResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,9 @@ public class ApplicationServlet extends HttpServlet {
 
     private Router router;
     private Renderer renderer;
+
+    public ApplicationServlet() {
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

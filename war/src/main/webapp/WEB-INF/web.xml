@@ -20,12 +20,12 @@
 
     <servlet>
         <servlet-name>ApplicationServlet</servlet-name>
-        <servlet-class>org.autumn.web.ApplicationAServlet</servlet-class>
+        <servlet-class>org.autumn.war.servlets.ApplicationServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>AServlet</servlet-name>
-        <url-pattern>*.html</url-pattern>
+        <servlet-name>ApplicationServlet</servlet-name>
+        <url-pattern>/app*</url-pattern>
     </servlet-mapping>
 
 </web-app>
