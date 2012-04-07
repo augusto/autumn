@@ -1,42 +1,47 @@
 package org.autumn.war.servlets;
 
-import org.autumn.web.Renderer;
-import org.autumn.web.Request;
-import org.autumn.web.Response;
+import org.autumn.inject.InjectWeb;
 import org.autumn.web.Router;
-import org.autumn.web.http.HttpRequest;
-import org.autumn.web.http.HttpResponse;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 public class ApplicationServlet extends HttpServlet {
 
-    private Router router;
-    private Renderer renderer;
+    private final Router router;
 
     public ApplicationServlet() {
+        router = InjectWeb.injectRouter();
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doProcess(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doProcess(req, resp);
     }
 
     private void doProcess(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws ServletException {
-        String uri = httpRequest.getRequestURI();
-        Request request = new HttpRequest(httpRequest);
-        Response response = new HttpResponse(httpResponse, renderer);
+
+        System.out.println("Uri: " + httpRequest.getRequestURI());
+        Map parameterMap = httpRequest.getParameterMap();
+        if( parameterMap.isEmpty() ) {
+            System.out.println("Parameter map is empty");
+        } else {
+            for( Object key : parameterMap.keySet()) {
+                System.out.println("Parameter ["+ key + "=" + parameterMap.get(key) + "]");
+            }
+        }
+
         try {
-            router.findControllerForUri(uri).onRequest(request, response);
+            router.route(httpRequest, httpResponse);
         } catch (Exception e) {
             throw new ServletException("Unexpected Error", e);
         }

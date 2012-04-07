@@ -15,4 +15,8 @@ public class InMemoryPageRepository implements PageRepository {
         return pages.get(pageName);
     }
 
+    @Override
+    public void savePage(Page page) {
+        pages.put(page.getName(), page);
+    }
 }

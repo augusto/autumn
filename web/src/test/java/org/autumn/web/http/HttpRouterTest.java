@@ -1,8 +1,11 @@
 package org.autumn.web.http;
 
 import org.autumn.web.Controller;
+import org.autumn.web.Renderer;
 import org.autumn.web.Request;
 import org.autumn.web.Response;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -11,14 +14,19 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class HttpRouterTest {
 
-    final Controller viewPageController = new TestController();
-    final Controller createPageController = new TestController();
-    final Controller pageNotFoundController = new TestController();
+    private final Controller viewPageController = new TestController();
+    private final Controller createPageController = new TestController();
+    private final Controller pageNotFoundController = new TestController();
 
-    private HttpRouter router = new HttpRouter();
+    @Mock
+    private Renderer renderer;
+
+    private HttpRouter router;
 
     @BeforeMethod
     public void setup() {
+        MockitoAnnotations.initMocks(this);
+        router = new HttpRouter(renderer);
 
         router.add("/viewpage", viewPageController);
         router.add("/createpage", createPageController);

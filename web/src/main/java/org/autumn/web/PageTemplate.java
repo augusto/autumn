@@ -2,7 +2,8 @@ package org.autumn.web;
 
 public enum PageTemplate {
 
-    VIEW_PAGE;
+    VIEW_PAGE,
+    CREATE_PAGE;
 
     private static final String TEMPLATE_EXTENSION = ".tfl";
 

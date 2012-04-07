@@ -7,6 +7,7 @@ import org.autumn.web.Response;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class HttpResponse implements Response {
 
@@ -20,12 +21,13 @@ public class HttpResponse implements Response {
 
     @Override
     public void sendTo(Class<? extends Controller> page) throws IOException {
-        response.sendRedirect(page.getCanonicalName());
+        response.sendRedirect(page.getSimpleName().toLowerCase());
     }
 
     @Override
-    public void render(PageTemplate template, Object model) {
-
-
+    public void render(PageTemplate template, Object model) throws IOException {
+        PrintWriter writer = response.getWriter();
+        renderer.render(writer, template, model);
+        writer.close();
     }
 }

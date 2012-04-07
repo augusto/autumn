@@ -1,4 +1,4 @@
-package org.autumn.web.controller.viewpage;
+package org.autumn.web.controller.page;
 
 import org.autumn.model.domain.Page;
 import org.autumn.model.repositories.PageRepository;
@@ -6,15 +6,14 @@ import org.autumn.web.Controller;
 import org.autumn.web.PageTemplate;
 import org.autumn.web.Request;
 import org.autumn.web.Response;
-import org.autumn.web.controller.createpage.CreatePageController;
 
 import java.io.IOException;
 
-public class ViewPageController implements Controller {
+public class ViewPage implements Controller {
 
     private PageRepository pages;
 
-    public ViewPageController(PageRepository pages) {
+    public ViewPage(PageRepository pages) {
         this.pages = pages;
     }
 
@@ -23,7 +22,7 @@ public class ViewPageController implements Controller {
         String pageName = request.getParameter("pageName");
         Page page = pages.findPageByName(pageName);
         if( page == null) {
-            httpResponse.sendTo(CreatePageController.class);
+            httpResponse.sendTo(CreatePage.class);
         } else {
             httpResponse.render(PageTemplate.VIEW_PAGE, page);
         }
