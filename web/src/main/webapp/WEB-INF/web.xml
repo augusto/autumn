@@ -7,5 +7,25 @@
     <display-name>CKEditor for Java - Sample Web Application</display-name>
     <description>CKEditor for Java. The server side integration for CKEditor.</description>
 
+    <servlet>
+        <servlet-name>AServlet</servlet-name>
+        <servlet-class>org.autumn.web.controller.AServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AServlet</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ApplicationServlet</servlet-name>
+        <servlet-class>org.autumn.web.ApplicationAServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AServlet</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
 
 </web-app>
