@@ -12,6 +12,10 @@ import org.testng.annotations.Test;
 import javax.servlet.ServletException;
 import java.io.IOException;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.equalTo;
+
 public class CreatePageTest {
     ApplicationServlet applicationServlet = new ApplicationServlet();
 
@@ -31,6 +35,15 @@ public class CreatePageTest {
         applicationServlet.doGet(mockHttpServletRequest, mockHttpServletResponse);
 
         String responseBody = mockHttpServletResponse.getBody();
-        MatcherAssert.assertThat(responseBody, Matchers.containsString("action=\"/createpage\""));
+        assertThat(responseBody, containsString("action=\"/createpage\""));
+
+        mockHttpServletRequest = new MockHttpServletRequest("/createpage");
+        mockHttpServletRequest.addParameter("name", "home");
+        mockHttpServletRequest.addParameter("body", "This is the page body");
+        mockHttpServletResponse = new MockHttpServletResponse();
+
+        applicationServlet.doGet(mockHttpServletRequest, mockHttpServletResponse);
+        assertThat(mockHttpServletResponse.getRedirectLocation(), equalTo("viewpage?name=home"));
+
     }
 }

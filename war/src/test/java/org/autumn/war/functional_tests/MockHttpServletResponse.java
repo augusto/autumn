@@ -12,6 +12,7 @@ import java.util.Locale;
 public class MockHttpServletResponse implements HttpServletResponse {
 
     private final StringWriter writer;
+    private String redirectLocation;
 
     public MockHttpServletResponse() {
         writer = new StringWriter();
@@ -24,6 +25,15 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
     public String getBody() {
         return writer.toString();
+    }
+
+    @Override
+    public void sendRedirect(String location) throws IOException {
+        redirectLocation = location;
+    }
+
+    public String getRedirectLocation() {
+        return redirectLocation;
     }
 
     @Override
@@ -63,11 +73,6 @@ public class MockHttpServletResponse implements HttpServletResponse {
 
     @Override
     public void sendError(int sc) throws IOException {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void sendRedirect(String location) throws IOException {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 

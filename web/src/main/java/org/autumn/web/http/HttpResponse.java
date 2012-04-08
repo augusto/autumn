@@ -1,5 +1,6 @@
 package org.autumn.web.http;
 
+import org.autumn.common.lang.Collections;
 import org.autumn.web.Controller;
 import org.autumn.web.PageTemplate;
 import org.autumn.web.Renderer;
@@ -8,6 +9,7 @@ import org.autumn.web.Response;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 public class HttpResponse implements Response {
 
@@ -20,8 +22,30 @@ public class HttpResponse implements Response {
     }
 
     @Override
-    public void sendTo(Class<? extends Controller> page) throws IOException {
-        response.sendRedirect(page.getSimpleName().toLowerCase());
+    public void sendTo(Class<? extends Controller> controller) throws IOException {
+        sendTo(controller, Collections.EMPTY_MAP);
+    }
+
+    @Override
+    public void sendTo(Class<? extends Controller> controller, Map<String, String> parameters) throws IOException {
+        StringBuilder uriPath = new StringBuilder();
+        uriPath.append(controller.getSimpleName().toLowerCase());
+        if( ! parameters.isEmpty() ) {
+            uriPath.append("?");
+
+            boolean firstParam = true;
+            for( String paramName : parameters.keySet()) {
+                if( firstParam ) {
+                    firstParam = false;
+                } else {
+                    uriPath.append("&");
+                }
+
+                uriPath.append(paramName).append("=").append(parameters.get(paramName));
+            }
+        }
+
+        response.sendRedirect(uriPath.toString());
     }
 
     @Override

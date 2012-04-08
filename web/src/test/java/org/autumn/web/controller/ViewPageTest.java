@@ -39,7 +39,7 @@ public class ViewPageTest {
     @Test
     public void user_is_redirected_to_create_page_when_page_does_not_exist() throws IOException {
         ViewPage viewPage = new ViewPage(pageRepository);
-        when(request.getParameter("pageName")).thenReturn(null);
+        when(request.getParameter("name")).thenReturn(null);
         viewPage.onRequest(request, response);
 
         verify(response).sendTo(NewPage.class);
@@ -48,7 +48,7 @@ public class ViewPageTest {
     @Test
     public void can_display_existing_page() throws IOException {
         ViewPage viewPage = new ViewPage(pageRepository);
-        when(request.getParameter("pageName")).thenReturn("test_page");
+        when(request.getParameter("name")).thenReturn("test_page");
         when(pageRepository.findPageByName("test_page")).thenReturn(page);
         viewPage.onRequest(request, response);
 

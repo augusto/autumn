@@ -10,6 +10,8 @@ import org.autumn.web.Renderer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FreemarkerRenderer implements Renderer {
     private Configuration cfg;
@@ -25,7 +27,9 @@ public class FreemarkerRenderer implements Renderer {
 
         try {
             Template template = cfg.getTemplate(pageTemplate.getTemplateName());
-            template.process(model, writer);
+            Map<String, Object> rootMap = new HashMap<String, Object>();
+            rootMap.put("model", model);
+            template.process(rootMap, writer);
         } catch (TemplateException e) {
             throw new RuntimeException("Error processing the template " + pageTemplate.getTemplateName(), e);
         }

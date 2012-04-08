@@ -19,7 +19,7 @@ public class ViewPage implements Controller {
 
     public void onRequest(Request request, Response httpResponse) throws IOException {
 
-        String pageName = request.getParameter("pageName");
+        String pageName = request.getParameter("name");
         Page page = pages.findPageByName(pageName);
         if( page == null) {
             httpResponse.sendTo(NewPage.class);

@@ -33,7 +33,7 @@ public class InjectWeb {
     }
 
     public static Controller injectCreatePage() {
-        return new CreatePage();
+        return new CreatePage(InjectModel.injectPageRepository());
     }
 
     public static Controller injectNewPage() {
