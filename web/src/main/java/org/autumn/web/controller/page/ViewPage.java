@@ -22,7 +22,7 @@ public class ViewPage implements Controller {
         String pageName = request.getParameter("pageName");
         Page page = pages.findPageByName(pageName);
         if( page == null) {
-            httpResponse.sendTo(CreatePage.class);
+            httpResponse.sendTo(NewPage.class);
         } else {
             httpResponse.render(PageTemplate.VIEW_PAGE, page);
         }

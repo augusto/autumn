@@ -43,7 +43,7 @@ public class ApplicationServlet extends HttpServlet {
         try {
             router.route(httpRequest, httpResponse);
         } catch (Exception e) {
-            throw new ServletException("Unexpected Error", e);
+            throw new ServletException("Unexpected Error: " + e.getMessage(), e);
         }
     }
 }

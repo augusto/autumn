@@ -1,0 +1,18 @@
+<html>
+
+<head>
+    <title>Create Page</title>
+</head>
+
+<body>
+<h1>Create Page</h1>
+<form action="/createpage" method="post">
+    <h3>Name</h3>
+    <input name="name" type="text">
+    <h3>Content</h3>
+    <textarea name="body" rows="40" cols="100"></textarea>
+</form>
+
+</body>
+
+</html>
