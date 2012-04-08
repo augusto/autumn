@@ -1,0 +1,27 @@
+** Likes **
+That I can run the whole application with a couple of mocked out http request / response in a very easy way.
+-> This is possible because there's no magic on the web layer (as Tapestry 5 and other web framework do).
+  -> THERE IS NO MAGIC!!!!
+
+
+** Not like ** (for now)
+The injection is no very nice - This is probably because it's the first time I've done this.
+How to deal with singletons? (e.g. FreemarkerRenderer I don't want to create a new config on each request).
+-> Should the class actually be a singleton? or should I let the inject module make it a singleton?
+
+Do I need to introduce some Factories?
+-> Specially for Request and Response?
+   -> Why does the Router need a Renderer?!?!?
+
+
+
+** TO DO **
+Define the boundaries of each module in a stricter way. I think model, plugins & inject is quite clear, but is
+a bit blurry
+
+Need to find a way to build http links in an easy way.
+
+Check how to replace the class of one dependency given a startup parameter (e.g. use file based repository rather than
+ DB or in-memory). -> This probably can be solved with an abstract factory.
+
+Some tests overuse mocks, but this could easily be changed to use use test doubles. (e.g ViewPageTest)
