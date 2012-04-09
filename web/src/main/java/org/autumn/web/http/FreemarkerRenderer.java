@@ -13,10 +13,10 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FreemarkerRenderer implements Renderer {
+public class FreeMarkerRenderer implements Renderer {
     private Configuration cfg;
 
-    public FreemarkerRenderer() {
+    public FreeMarkerRenderer() {
         cfg = new Configuration();
         cfg.setClassForTemplateLoading(Renderer.class,"");
         cfg.setObjectWrapper(new DefaultObjectWrapper());
@@ -31,7 +31,8 @@ public class FreemarkerRenderer implements Renderer {
             rootMap.put("model", model);
             template.process(rootMap, writer);
         } catch (TemplateException e) {
-            throw new RuntimeException("Error processing the template " + pageTemplate.getTemplateName(), e);
+            throw new RuntimeException("Error processing the template " + pageTemplate.getTemplateName() + " - "
+                    + e.getMessage(), e);
         }
 
     }

@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
 
 <head>
@@ -8,11 +9,11 @@
 <h1>Create Page</h1>
 <form action="/createpage" method="post">
     <h3>Name</h3>
-    <input name="name" type="text">
+    <input name="name" type="text" value="${model.name!}"/>
     <h3>Content</h3>
     <textarea name="body" rows="40" cols="100"></textarea>
     <hr/>
-    <input type="submit" name="create" title="create" />
+    <input type="submit" name="create" title="create" value="create"/>
 </form>
 
 </body>

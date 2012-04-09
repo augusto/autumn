@@ -9,6 +9,8 @@ import org.autumn.web.Response;
 
 import java.io.IOException;
 
+import static org.autumn.common.lang.Collections.asMap;
+
 public class CreatePage implements Controller {
 
     private PageRepository pageRepository;
@@ -26,6 +28,6 @@ public class CreatePage implements Controller {
         pageRepository.savePage(newPage);
 
 
-        response.sendTo(ViewPage.class, Collections.asMap("name", name));
+        response.redirectTo(ViewPage.class, asMap("name", name));
     }
 }

@@ -5,9 +5,12 @@ import org.autumn.web.PageTemplate;
 import org.autumn.web.Request;
 import org.autumn.web.Response;
 
+import static org.autumn.common.lang.Collections.asMap;
+
 public class NewPage implements Controller {
     @Override
     public void onRequest(Request request, Response response) throws Exception {
-        response.render(PageTemplate.NEW_PAGE, null);
+        String name = request.getParameter("name");
+        response.render(PageTemplate.NEW_PAGE, asMap("name", name));
     }
 }

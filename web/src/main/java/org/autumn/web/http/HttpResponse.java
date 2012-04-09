@@ -22,12 +22,12 @@ public class HttpResponse implements Response {
     }
 
     @Override
-    public void sendTo(Class<? extends Controller> controller) throws IOException {
-        sendTo(controller, Collections.EMPTY_MAP);
+    public void redirectTo(Class<? extends Controller> controller) throws IOException {
+        redirectTo(controller, Collections.EMPTY_MAP);
     }
 
     @Override
-    public void sendTo(Class<? extends Controller> controller, Map<String, String> parameters) throws IOException {
+    public void redirectTo(Class<? extends Controller> controller, Map<String, String> parameters) throws IOException {
         StringBuilder uriPath = new StringBuilder();
         uriPath.append(controller.getSimpleName().toLowerCase());
         if( ! parameters.isEmpty() ) {

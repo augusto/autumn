@@ -6,12 +6,12 @@ import org.autumn.web.Router;
 import org.autumn.web.controller.page.CreatePage;
 import org.autumn.web.controller.page.NewPage;
 import org.autumn.web.controller.page.ViewPage;
-import org.autumn.web.http.FreemarkerRenderer;
+import org.autumn.web.http.FreeMarkerRenderer;
 import org.autumn.web.http.HttpRouter;
 
 public class InjectWeb {
 
-    private static final Renderer renderer  = new FreemarkerRenderer();
+    private static final Renderer renderer  = new FreeMarkerRenderer();
     private static final Router router;
 
     static {

@@ -29,7 +29,7 @@ public class CreatePageTest {
         PageRepository pageRepository = InjectModel.injectPageRepository();
 
         MockHttpServletRequest mockHttpServletRequest = new MockHttpServletRequest("/newpage");
-        mockHttpServletRequest.addParameter("pageName", "home");
+        mockHttpServletRequest.addParameter("name", "home");
         MockHttpServletResponse mockHttpServletResponse = new MockHttpServletResponse();
 
         applicationServlet.doGet(mockHttpServletRequest, mockHttpServletResponse);

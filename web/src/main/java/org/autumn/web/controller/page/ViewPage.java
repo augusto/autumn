@@ -1,5 +1,6 @@
 package org.autumn.web.controller.page;
 
+import org.autumn.common.lang.Collections;
 import org.autumn.model.domain.Page;
 import org.autumn.model.repositories.PageRepository;
 import org.autumn.web.Controller;
@@ -20,9 +21,14 @@ public class ViewPage implements Controller {
     public void onRequest(Request request, Response httpResponse) throws IOException {
 
         String pageName = request.getParameter("name");
+
+        if( pageName == null) {
+            httpResponse.redirectTo(NewPage.class, Collections.asMap("name","home"));
+        }
+
         Page page = pages.findPageByName(pageName);
         if( page == null) {
-            httpResponse.sendTo(NewPage.class);
+            httpResponse.redirectTo(NewPage.class, Collections.asMap("name",pageName));
         } else {
             httpResponse.render(PageTemplate.VIEW_PAGE, page);
         }
